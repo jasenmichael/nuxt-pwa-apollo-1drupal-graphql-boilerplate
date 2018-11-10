@@ -1,7 +1,7 @@
 <template>
     <section class="container">
       <h1 class="is-size-1" v-html="route.nodeContext.title"/>
-      <div class="container" v-html="route.nodeContext.body.value.replace('/sites/', 'http://api1.majaqu.com/sites/')" />
+      <div class="container" v-html="route.nodeContext.body.value" />
     </section>
 </template>
 
@@ -13,7 +13,6 @@ export default {
   layout: 'index',
   data() {
     return {
-      online: true,
       name: this.$nuxt.$route.params.page,
       path: this.$nuxt.$route.path,
       type: this.$nuxt.$route.name
@@ -21,7 +20,6 @@ export default {
   },
   apollo: {
     route: {
-      // prefetch: true,
       prefetch: true,
       query: pageQuery,
       variables() {
@@ -29,35 +27,11 @@ export default {
           path: '/home'
         }
       }
-    },
-    menuByName: {
-      prefetch: true,
-      query: menuQuery,
-      variables() {
-        return {
-          name: 'main'
-        }
-      }
     }
   },
-  mounted () {
-    if (!window.navigator) {
-      this.online = false
-      return
-    }
-    this.online = Boolean(window.navigator.onLine)
-    window.addEventListener('offline', this._toggleNetworkStatus)
-    window.addEventListener('online', this._toggleNetworkStatus)
-  },
-  methods: {
-    _toggleNetworkStatus ({ type }) {
-      this.online = type === 'online'
-    }
-  },
-  destroyed () {
-    window.removeEventListener('offline', this._toggleNetworkStatus)
-    window.removeEventListener('online', this._toggleNetworkStatus)
-  }
+  mounted () {},
+  methods: {},
+  destroyed () {}
 }
 </script>
 
