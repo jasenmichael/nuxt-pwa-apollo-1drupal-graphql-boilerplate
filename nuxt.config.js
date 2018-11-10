@@ -26,7 +26,8 @@ module.exports = {
     theme_color: '#3B8070'
   },
   plugins: [
-    '~/plugins/fontawesome.js'
+    '~/plugins/fontawesome.js',
+    '~/plugins/drupalRest.js'
   ],
   /*
    ** Modules
@@ -50,7 +51,7 @@ module.exports = {
   // apollo configs
   apollo: {
     clientConfigs: {
-      default: '~/plugins/apollo.js'
+      default: '~/plugins/drupalGraphql.js'
     },
     includeNodeModules: true
   }
