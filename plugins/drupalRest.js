@@ -3,10 +3,11 @@ import Vue from 'vue'
 //const config = require('static/config.js').config
 // import { config } from '../static/config.js'
 
-Vue.prototype.$getMainMenu = (menu) => {
-    const url = process.env.drp_rest_URL + "entity/menu/main/tree?_format=json"
+Vue.prototype.$getMenu = (menu) => {
+    const url = process.env.drp_rest_URL + "entity/menu/" + menu + "/tree?_format=json"
     console.log("get fetchin that " + menu + " menu already JOB!")
     console.log(url)
+
     /// replace with a axios.get(url)
     /// replace with a axios.get(url)
     let mainMenu = []

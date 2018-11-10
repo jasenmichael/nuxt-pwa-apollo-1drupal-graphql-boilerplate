@@ -67,7 +67,6 @@
 </template>
 
 <script>
-// import menuQuery from "~/queries/menuQuery.gql";
 
 export default {
   data() {
@@ -77,7 +76,7 @@ export default {
     }
   },
   created() {
-    this.mainMenu = this.$getMainMenu("main")
+    this.mainMenu = this.$getMenu("main")
     console.log(this.mainMenu)
 
   },
