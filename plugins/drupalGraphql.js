@@ -1,6 +1,6 @@
 export default function(context){
     return {
-        httpEndpoint: process.env.API1_URL,
+        httpEndpoint: process.env.drp_graphql_URL,
         // optional
         // See https://www.apollographql.com/docs/link/links/http.html#options
         httpLinkOptions: {
