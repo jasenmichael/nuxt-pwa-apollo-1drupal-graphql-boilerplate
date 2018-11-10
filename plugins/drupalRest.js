@@ -4,12 +4,15 @@ import Vue from 'vue'
 // import { config } from '../static/config.js'
 
 Vue.prototype.$getMainMenu = (menu) => {
-    const url = process.env.drp_rest_URL + menu
+    const url = process.env.drp_rest_URL + "entity/menu/main/tree?_format=json"
     console.log("get fetchin that " + menu + " menu already JOB!")
+    console.log(url)
+    /// replace with a axios.get(url)
+    /// replace with a axios.get(url)
     let mainMenu = []
     return mainMenu = [
         {
-            title: "home",
+            title: "Home",
             path: "/",
             uid: "0001"
         },
@@ -19,6 +22,8 @@ Vue.prototype.$getMainMenu = (menu) => {
             uid: "0002"
         }
     ]
+    /// replace with a axios.get(url)
+    /// replace with a axios.get(url)
 }
 
 
