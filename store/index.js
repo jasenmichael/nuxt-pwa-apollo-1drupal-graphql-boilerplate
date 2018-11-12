@@ -15,7 +15,11 @@ const createStore = () => {
       menus: {},
       galleries: {}
     }),
-    mutations: {},
+    mutations: {
+      add (state, payload) {
+        state.menus = payload
+      }
+    },
     actions: {}
   })
 }

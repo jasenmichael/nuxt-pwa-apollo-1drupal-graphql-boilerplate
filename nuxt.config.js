@@ -7,7 +7,9 @@ module.exports = {
   /*
    ** Build configuration
    */
-  build: {},
+  build: {
+    vendor: ['axios', 'apollo']
+  },
   /*
    ** Headers
    ** Common headers are already provided by @nuxtjs/pwa preset

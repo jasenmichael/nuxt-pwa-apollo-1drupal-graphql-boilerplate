@@ -6,14 +6,13 @@
         <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28">
       </a>
 
-      <a 
-        role="button" 
-        class="navbar-burger burger" 
-        aria-label="menu" aria-expanded="false" 
+      <a
+        role="button"
+        class="navbar-burger burger"
+        aria-label="menu" aria-expanded="false"
         data-target="navbarBasicExample"
-
         v-on:click="showNav = !showNav" v-bind:class="{ 'is-active' : showNav }"
-        
+
       >
         <span aria-hidden="true"></span>
         <span aria-hidden="true"></span>
@@ -21,13 +20,13 @@
       </a>
     </div>
 
-    <div 
-      id="navbarBasicExample" 
+    <div
+      id="navbarBasicExample"
       class="navbar-menu"
       v-bind:class="{ 'is-active' : showNav }"
     >
       <div class="navbar-start">
-        <a class="navbar-item" v-for="link in mainMenu" v-bind:key="link.uid" :href="link.path" v-html="link.title"/>
+        <nuxt-link class="navbar-item" v-for="link in $store.state.menus" :to="link.path" v-html="link.title"/>
 
         <div class="navbar-item has-dropdown is-hoverable">
           <a class="navbar-link">
@@ -35,9 +34,9 @@
           </a>
 
           <div class="navbar-dropdown">
-            <a class="navbar-item" href="/about">
+            <nuxt-link class="navbar-item" to="/about">
               About
-            </a>
+            </nuxt-link>
             <a class="navbar-item" href="/contact-us">
               Contact Us
             </a>
@@ -67,22 +66,19 @@
 </template>
 
 <script>
-// import menuQuery from "~/queries/menuQuery.gql";
 
 export default {
   data() {
     return {
       showNav: false,
-      mainMenu: []
     }
   },
   created() {
-    this.mainMenu = this.$getMainMenu("main")
-    console.log(this.mainMenu)
 
   },
   mounted() {},
-  methods: {}
+  methods: {
+  }
 }
 </script>
 

@@ -1,7 +1,7 @@
 <template>
   <div>
-    <nav-bar/>
-    <section class="hero is-primary">
+    <!-- <nav-bar/> -->
+    <!-- <section class="hero is-primary">
       <div class="hero-body">
         <div class="container has-text-centered">
           <div class="columns">
@@ -10,18 +10,18 @@
             </div>
             <div class="column">
               <font-awesome-icon
-                :icon="['fas', 'plus']" 
+                :icon="['fas', 'plus']"
                 size="3x"
               />
             </div>
             <div class="column">
               <font-awesome-icon
-                :icon="['fab', 'drupal']" 
+                :icon="['fab', 'drupal']"
                 size="10x"
               />
             </div>
           </div>
-          <h1 
+          <h1
             class="title is-2"
             v-html="pkg.name"/>
           <h2
@@ -29,7 +29,7 @@
             v-html="pkg.description"/>
         </div>
       </div>
-    </section>
+    </section> -->
     <div>
     </div>
     <nuxt/>
@@ -52,6 +52,13 @@ export default {
 </script>
 
 <style>
+img {
+  /* width: 40vw; */
+  max-width: 400px;
+  float: left;
+  margin: 0.4rem 0.4rem -0.6rem;
+  padding: 3px 6px 1px 0;
+}
 .icon {
   text-align: center;
 }

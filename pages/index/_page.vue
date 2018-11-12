@@ -3,7 +3,7 @@
     <section class="content has-text-centered">
       <h1 class="is-size-4">Oops.. "{{ this.$nuxt.$route.params.page }}" not found...</h1>
       <h2 class="fourzerofour">404</h2>
-    </section>  
+    </section>
   </div>
   <div v-else>
     <section class="content container">
@@ -14,11 +14,9 @@
 </template>
 
 <script>
-import menuQuery from "~/queries/menuQuery.gql";
 import pageQuery from "~/queries/pageQuery.gql";
 
 export default {
-  layout: 'page',
   data() {
     return {
       name: this.$nuxt.$route.params.page,
@@ -36,22 +34,7 @@ export default {
         }
       }
     },
-    menuByName: {
-      prefetch: true,
-      query: menuQuery,
-      variables() {
-        return {
-          name: 'main'
-        }
-      }
-    }
   },
-  beforeCreate() {},
-  beforeMount() {
-  },
-  mounted() {},
-  methods: {},
-  destroyed() {}
 };
 </script>
 
