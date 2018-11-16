@@ -8,7 +8,7 @@ module.exports = {
    ** Build configuration
    */
   build: {
-    vendor: ['axios', 'apollo']
+    vendor: ['axios', 'apollo-boost']
   },
   /*
    ** Headers
@@ -28,8 +28,7 @@ module.exports = {
     theme_color: '#3B8070'
   },
   plugins: [
-    '~/plugins/fontawesome.js',
-    '~/plugins/drupalRest.js'
+    '~/plugins/fontawesome.js'
   ],
   /*
    ** Modules

@@ -37,9 +37,9 @@
             <nuxt-link class="navbar-item" to="/about">
               About
             </nuxt-link>
-            <a class="navbar-item" href="/contact-us">
+            <nuxt-link class="navbar-item" to="/">
               Contact Us
-            </a>
+            </nuxt-link>
             <hr class="navbar-divider">
             <a class="navbar-item">
               Report an issue
@@ -73,12 +73,6 @@ export default {
       showNav: false,
     }
   },
-  created() {
-
-  },
-  mounted() {},
-  methods: {
-  }
 }
 </script>
 

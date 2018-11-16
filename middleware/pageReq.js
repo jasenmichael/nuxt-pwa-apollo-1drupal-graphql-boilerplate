@@ -1,16 +1,26 @@
-import axios from 'axios'
+//this currently isnt compatable with nuxt-link and breaks when the route is switched
 
-export default function({store}) {
-  const url = process.env.drp_rest_URL + "entity/menu/main/tree?_format=json"
-  let mainMenu = []
-  axios.get(url)
-    .then((response) => {
-      for (var i = 0; i < response.data.length; i++) {
-        let menuObj = {}
-        menuObj.title = response.data[i].link.title
-        menuObj.path = response.data[i].link.url
-        mainMenu.push(menuObj)
-      }
-      store.commit('add', mainMenu)
-    })
+import pageQuery from "~/queries/pageQuery.gql";
+import ApolloClient from "apollo-boost"
+
+export default function({route, store}) {
+    let variables
+    if (route.path === "/") {
+      variables = {path: route.path + "home"}
+    }else {
+      variables = {path: route.path}
+    }
+  let payload
+  const client = new ApolloClient({
+    uri: process.env.drp_graphql_URL
+  })
+  console.log(process.server);
+
+  return client.query({query:pageQuery, variables:variables})
+  .then(({data}) => {
+    if (data.route) {
+      payload = data.route.nodeContext
+      store.dispatch('update', payload)
+    }
+  })
 }

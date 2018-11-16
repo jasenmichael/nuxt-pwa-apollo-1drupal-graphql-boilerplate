@@ -1,40 +1,72 @@
 <template>
-  <div v-if="(route === null || route == undefined)">
-    <section class="content has-text-centered">
-      <h1 class="is-size-4">Oops.. "{{ this.$nuxt.$route.params.page }}" not found...</h1>
-      <h2 class="fourzerofour">404</h2>
-    </section>
-  </div>
-  <div v-else>
-    <section class="content container">
-      <h1 class="is-size-1" v-html="route.nodeContext.title"/>
-      <div class="container" v-html="route.nodeContext.body.value.replace('/sites/', 'http://api1.majaqu.com/sites/')" />
-    </section>
+  <div>
+    <!-- <div v-if="(route === null || route == undefined)">
+      <section class="content has-text-centered">
+        <h1 class="is-size-4">Oops.. "{{ this.$nuxt.$route.params.page }}" not found...</h1>
+        <h2 class="fourzerofour">404</h2>
+      </section>
+    </div> -->
+    <div >
+      <section class="content container">
+        <h1 class="is-size-1" v-html="$store.state.title"/>
+        <div class="container" v-html="$store.state.info" />
+      </section>
+    </div>
   </div>
 </template>
 
 <script>
-import pageQuery from "~/queries/pageQuery.gql";
+// import pageQuery from "~/queries/pageQuery.gql";
+// import ApolloClient from "apollo-boost"
 
 export default {
   data() {
     return {
-      name: this.$nuxt.$route.params.page,
-      path: this.$nuxt.$route.path,
-      type: this.$nuxt.$route.name
     };
   },
-  apollo: {
-    route: {
-      prefetch: ({ route }) => ({ path: route.path }),
-      query: pageQuery,
-      variables() {
-        return {
-          path: this.$route.path
-        }
-      }
-    },
-  },
+  // middleware: 'pageReq',
+
+  // // get page data in child page using asyncData
+  // async asyncData ({route, store, app}) {
+  //   let variables
+  //   if (route.path === "/") {
+  //     variables = {path: route.path + "home"}
+  //   }else {
+  //     variables = {path: route.path}
+  //   }
+  //   let payload
+  //   let client
+  //   if (this === undefined) {
+  //     console.log("new");
+  //     client = new ApolloClient({
+  //       uri: process.env.drp_graphql_URL
+  //     })
+  //   }else {
+  //     console.log("old");
+  //     client = app.apolloProvider.defaultClient
+  //   }
+  //   await client.mutate({query:pageQuery, variables:variables})
+  //   .then(({data}) => {
+  //     if (data.route) {
+  //       payload = data.route.nodeContext
+  //       store.dispatch('update', payload)
+  //     }
+  //   })
+  // }
+  // async asyncData ({route, store}) {
+  //   let variables = {path: route.path}
+  //   let payload
+  //   const client = new ApolloClient({
+  //     uri: process.env.drp_graphql_URL
+  //   })
+  //   await client.query({query:pageQuery, variables:variables})
+  //   .then(({data}) => {
+  //     if (data.route) {
+  //       payload = data.route.nodeContext
+  //     }
+  //   })
+  //   store.dispatch('update', payload)
+  // }
 };
 </script>
 
