@@ -1,8 +1,9 @@
 <template>
 <div>
+  <pre v-html='mainMenu'/>
   <nav class="navbar is-fixed-top" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
-      <a class="navbar-item" href="https://bulma.io">
+      <a class="navbar-item" href="/">
         <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28">
       </a>
 
@@ -27,39 +28,7 @@
       v-bind:class="{ 'is-active' : showNav }"
     >
       <div class="navbar-start">
-        <a class="navbar-item" v-for="link in mainMenu" v-bind:key="link.uid" :href="link.path" v-html="link.title"/>
-
-        <div class="navbar-item has-dropdown is-hoverable">
-          <a class="navbar-link">
-            More
-          </a>
-
-          <div class="navbar-dropdown">
-            <a class="navbar-item" href="/about">
-              About
-            </a>
-            <a class="navbar-item" href="/contact-us">
-              Contact Us
-            </a>
-            <hr class="navbar-divider">
-            <a class="navbar-item">
-              Report an issue
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <div class="navbar-end">
-        <div class="navbar-item">
-          <div class="buttons">
-            <a class="button is-primary">
-              <strong>Sign up</strong>
-            </a>
-            <a class="button is-light">
-              Log in
-            </a>
-          </div>
-        </div>
+        <nuxt-link class="navbar-item" v-for="(item, index) in mainMenu" v-bind:key="index" :to="item.link.url" v-html="item.link.title"/>
       </div>
     </div>
   </nav>
@@ -67,23 +36,36 @@
 </template>
 
 <script>
+import axios from 'axios'
 
 export default {
   data() {
-    return {
-      showNav: false,
-      mainMenu: []
+  return {
+    showNav: false,
+    mainMenu: this.$store.state.menus.main
     }
   },
   created() {
-    this.mainMenu = this.$getMenu("main")
-    console.log(this.mainMenu)
-
+    this.getMainMenu("main")
   },
-  mounted() {},
-  methods: {}
+  methods: {
+    getMainMenu(menu) {
+      if (!this.mainMenu) {
+      const url = process.env.drp_rest_URL + "/entity/menu/" + menu + "/tree?_format=json"  
+      return axios.get(url)
+        .then((res) => {
+          this.$store.state.menus.main = res.data
+          this.mainMenu = res.data
+        })
+      }
+    }
+  }
 }
+
 </script>
 
 <style>
+pre {
+  padding-top: 4em;
+}
 </style>
